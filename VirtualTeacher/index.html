@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html ng-app="virtualTeacherApp" ng-csp>
+<head>
+    <meta charset="utf-8" />
+    <title>VirtualTeacher</title>
+
+    <!-- VirtualTeacher references -->
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="css/mainMenu.css" rel="stylesheet"/>
+    <link href="css/colores.css" rel="stylesheet"/>
+
+    <style>
+        .nav, .pagination, .carousel, .panel-title a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="view-container">
+        <div ng-view class="view-frame"></div>
+    </div>
+
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <!--<script src="scripts/jquery-2.1.1.min.js"></script>-->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="scripts/angular-resource.min.js"></script>
+    <script src="scripts/angular-animate.min.js"></script>
+    <script src="scripts/app/app.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/app/services/imageServices.js"></script>
+    <script src="scripts/app/controllers/mainMenuController.js"></script>
+    <script src="scripts/app/controllers/coloresController.js"></script>
+    <script src="scripts/app/controllers/formasController.js"></script>
+    <script src="scripts/app/controllers/letrasController.js"></script>
+    <script src="scripts/app/controllers/numerosController.js"></script>
+</body>
+</html>
