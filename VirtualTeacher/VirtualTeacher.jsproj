@@ -127,6 +127,7 @@
     <Content Include="css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="css\images\Abstract_blue_gaussian_blur_2560x1600.jpg" />
     <Content Include="css\images\blurry_blue_background_ii-wallpaper-2560x1440.jpg" />
+    <Content Include="css\images\buttons\play.png" />
     <Content Include="css\images\colores\amarillo.png" />
     <Content Include="css\images\colores\anaranjado.png" />
     <Content Include="css\images\colores\azul.png" />

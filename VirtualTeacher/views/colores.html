@@ -16,14 +16,17 @@
         <div class="col-md-12">
             <div class="game-content">
                 <svg id="gameCanvas">
-
+                    <svg x="{{playX}}" y="{{playY}}" baseProfile="full" width="200" height="200" viewBox="0 0 200.00 200.00" enable-background="new 0 0 200.00 200.00" ng-click="playClick()">
+                        <ellipse fill="#006432" fill-opacity="1" stroke-linejoin="round" cx="100" cy="100" rx="100" ry="100" />
+                        <path fill="#FFFFFF" fill-opacity="1" stroke-linejoin="round" d="M 162.629,100L 62.8258,42.3788L 62.8258,157.621L 162.629,100 Z " />
+                    </svg>
                 </svg>
             </div>
         </div>
     </div>
     
     <div class="row game-info">
-        <div class="col-xs-6 ">
+        <div class="col-xs-4 ">
             <div>
                 <h5>Buscar:</h5>
             </div>
@@ -33,7 +36,7 @@
                 </svg>
             </div>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-8">
             <div>
                 <h6>Tiempo</h6>
                 <label>{{timer}}</label>

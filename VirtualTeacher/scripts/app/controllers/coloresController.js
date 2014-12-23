@@ -4,11 +4,15 @@ coloresController.controller('ColoresController', ['$scope', '$log', 'Images', f
     $scope.puntos = 0;
     $scope.timer = '00:00.000s';
     $scope.gameCanvas = $("#gameCanvas");
+    $scope.elementoBuscadoSvg = $("#elementoBuscado");
+
     $scope.columnWidth = ($scope.gameCanvas.width() / 3);
     $scope.columnHeight = ($scope.gameCanvas.height() / 3);
     $scope.minSize = $scope.columnWidth > $scope.columnHeight ? $scope.columnHeight : $scope.columnWidth;
     $scope.widthRect = $scope.minSize - 10;
     $scope.heightRect = $scope.widthRect;
+    $scope.playX = Math.floor($scope.gameCanvas.width() / 2) - 100;
+    $scope.playY = Math.floor($scope.gameCanvas.height() / 2) - 100;
 
     var svgns = "http://www.w3.org/2000/svg";
 
@@ -49,9 +53,13 @@ coloresController.controller('ColoresController', ['$scope', '$log', 'Images', f
     };
 
     $scope.drawBoard = function () {
+        $scope.gameCanvas.empty();
+        $scope.elementoBuscadoSvg.empty();
+
         $scope.shuffledArray = $scope.shuffle(colores_lv1);
-        $scope.elementoBuscadoSvg = $("#elementoBuscado");
+        
         $scope.elementoBuscadoRect = $scope.drawRect(2, 2, 50, 50, $scope.getRandomInPeriod(0, 7));
+        
         $scope.elementoBuscadoSvg.append($scope.elementoBuscadoRect);
         $scope.ArrayIndex = 0;
 
@@ -89,16 +97,7 @@ coloresController.controller('ColoresController', ['$scope', '$log', 'Images', f
         });
     };
 
-    $scope.drawBoard();
-
-    
-
-
-//$scope.drawRect(70, 10, $scope.widthRect, $scope.heightRect, 1);
-    //$scope.drawRect(130, 10, $scope.widthRect, $scope.heightRect, 2);
-    //$scope.drawRect(10, 70, $scope.widthRect, $scope.heightRect, 3);
-    //$scope.drawRect(70, 70, $scope.widthRect, $scope.heightRect, 4);
-    //$scope.drawRect(130, 70, $scope.widthRect, $scope.heightRect, 5);
-    //$scope.drawRect(10, 130, $scope.widthRect, $scope.heightRect, 6);
-    //$scope.drawRect(70, 130, $scope.widthRect, $scope.heightRect, 7);
+    $scope.playClick = function() {
+        $scope.drawBoard();
+    };
 }]);

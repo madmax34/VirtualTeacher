@@ -52,14 +52,10 @@ div .game-content {
     border-radius: 5px;
 }
 
-div .game-images img {
-    width: 150px;
-    height: 150px;
-}
-
-div .game-content canvas {
+div .game-content #gameCanvas {
     height: 100%;
     width: 100%;
+    background-color: rgba(225, 225, 225, .2);
 }
 
 div .game-info {
@@ -72,12 +68,13 @@ div .game-info {
     border-width: 1px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
     border-radius: 5px;
     background-color: #ffffff;
     color: green;
 }
 
-    div.game-info > div > div > h6 {
+div.game-info > div > div > h6 {
         margin-top: 2px !important;
         margin-bottom: 2px !important;
     }
