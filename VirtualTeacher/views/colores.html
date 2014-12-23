@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <header class="page-header">
                 <a class="btn btn-lg btn-primary" href="#/">
-                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    Volver
                 </a>
                 <img ng-src="css/images/icons/colores.png"/>
                 Colores
@@ -15,7 +15,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="game-content">
+                <svg id="gameCanvas">
 
+                </svg>
             </div>
         </div>
     </div>
@@ -25,14 +27,18 @@
             <div>
                 <h5>Buscar:</h5>
             </div>
-            <div>ELEMENTO BUSCADO</div>
+            <div>
+                <svg id="elementoBuscado" style="width: 56px; height: 56px; border: 1px solid #000000">
+                    
+                </svg>
+            </div>
         </div>
         <div class="col-xs-6">
             <div>
                 <h6>Tiempo</h6>
-                <label>00:00.000s</label>
+                <label>{{timer}}</label>
                 <h6>Puntos</h6>
-                <label>99999999</label>
+                <label>{{puntos}}</label>
             </div>
         </div>
     </div>
