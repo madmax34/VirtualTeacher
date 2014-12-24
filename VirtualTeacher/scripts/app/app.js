@@ -7,7 +7,8 @@
         'formasController',
         'numerosController',
         'letrasController',
-        'imageServices'
+        'imageServices',
+        'randomServices'
     ]);
 
 app.config(['$compileProvider', function ($compileProvider) {

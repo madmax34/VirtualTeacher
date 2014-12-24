@@ -1,22 +1,22 @@
 ﻿<div class="container-fluid">
-    <div class="row">
+    <div class="row header-row">
         <div class="col-md-12">
             <header class="page-header">
-                <a class="btn btn-lg btn-primary" href="#/">
-                    Volver
+                <a class="btn btn-primary" href="#/">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <img ng-src="css/images/icons/colores.png"/>
+                <img ng-src="css/images/icons/colores.png" />
                 Colores
             </header>
-            
+
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="game-content">
                 <svg id="gameCanvas">
-                    <svg x="{{playX}}" y="{{playY}}" baseProfile="full" width="200" height="200" viewBox="0 0 200.00 200.00" enable-background="new 0 0 200.00 200.00" ng-click="playClick()">
+                    <svg id="playSvg" x="{{playX}}" y="{{playY}}" baseProfile="full" width="200" height="200" viewBox="0 0 200.00 200.00" enable-background="new 0 0 200.00 200.00" ng-click="playClick()">
                         <ellipse fill="#006432" fill-opacity="1" stroke-linejoin="round" cx="100" cy="100" rx="100" ry="100" />
                         <path fill="#FFFFFF" fill-opacity="1" stroke-linejoin="round" d="M 162.629,100L 62.8258,42.3788L 62.8258,157.621L 162.629,100 Z " />
                     </svg>
@@ -24,24 +24,39 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row game-info">
-        <div class="col-xs-4 ">
-            <div>
-                <h5>Buscar:</h5>
-            </div>
-            <div>
-                <svg id="elementoBuscado" style="width: 56px; height: 56px; border: 1px solid #000000">
-                    
+        <div class="col-xs-3">
+            <svg id="elementoBuscado" style="width: 56px; height: 56px; border: 1px solid #000000">
+
+            </svg>
+        </div>
+        <div class="col-xs-3">
+            <h6>Tiempo</h6>
+            <label class="left">{{timer}}</label>
+
+            <h6>Puntos</h6>
+            <label>{{puntos}}</label>
+        </div>
+        <div class="col-xs-6">
+            <div class="row">
+                <svg height="25">
+                    <svg x="0" y="0" baseProfile="full" width="25" height="25" viewBox="0 0 25.00 25.00" enable-background="new 0 0 25.00 25.00" xml:space="preserve">
+                    <path fill="#ED1B24" fill-opacity="1" stroke-linejoin="round" d="M 7.31041,0C 9.35118,0 11.1966,0.83075 12.5228,2.17047C 13.8456,0.857605 15.6721,0.0457153 17.6896,0.0457153C 21.727,0.0457153 25,3.29742 25,7.30853C 25,11.3196 14.5164,22.4062 12.5482,25C 11.4235,22.7254 0,11.274 0,7.26282C 0,3.25165 3.27298,0 7.31041,0 Z " />
+                </svg>
+                    <svg x="26" y="0" baseProfile="full" width="25" height="25" viewBox="0 0 25.00 25.00" enable-background="new 0 0 25.00 25.00" xml:space="preserve">
+                    <path fill="#ED1B24" fill-opacity="1" stroke-linejoin="round" d="M 7.31041,0C 9.35118,0 11.1966,0.83075 12.5228,2.17047C 13.8456,0.857605 15.6721,0.0457153 17.6896,0.0457153C 21.727,0.0457153 25,3.29742 25,7.30853C 25,11.3196 14.5164,22.4062 12.5482,25C 11.4235,22.7254 0,11.274 0,7.26282C 0,3.25165 3.27298,0 7.31041,0 Z " />
+                </svg>
+                    <svg x="52" y="0" baseProfile="full" width="25" height="25" viewBox="0 0 25.00 25.00" enable-background="new 0 0 25.00 25.00" xml:space="preserve">
+                    <path fill="#ED1B24" fill-opacity="1" stroke-linejoin="round" d="M 7.31041,0C 9.35118,0 11.1966,0.83075 12.5228,2.17047C 13.8456,0.857605 15.6721,0.0457153 17.6896,0.0457153C 21.727,0.0457153 25,3.29742 25,7.30853C 25,11.3196 14.5164,22.4062 12.5482,25C 11.4235,22.7254 0,11.274 0,7.26282C 0,3.25165 3.27298,0 7.31041,0 Z " />
+                </svg>
+
                 </svg>
             </div>
-        </div>
-        <div class="col-xs-8">
-            <div>
-                <h6>Tiempo</h6>
-                <label>{{timer}}</label>
-                <h6>Puntos</h6>
-                <label>{{puntos}}</label>
+            <div class="row">
+                <svg baseProfile="full" width="40" height="40" viewBox="0 0 66.49 73.84" enable-background="new 0 0 66.49 73.84" xml:space="preserve">
+                    <path fill="#009664" fill-opacity="1" stroke-linejoin="round" d="M 52.8586,11.2952L 33.2946,22.5904L 33.2946,14.9662L 33.25,14.9654C 19.0977,14.9654 7.625,26.4382 7.625,40.5904C 7.625,54.7427 19.0977,66.2154 33.25,66.2154C 47.1514,66.2154 58.4674,55.1459 58.8642,41.3405L 66.4917,41.3405C 66.0929,59.3576 51.3628,73.8404 33.25,73.8404C 14.8865,73.8404 0,58.9539 0,40.5904C 0,22.227 14.8865,7.34039 33.25,7.34039L 33.2946,7.34113L 33.2946,-6.10352e-005L 52.8586,11.2952 Z " />
+                </svg>
             </div>
         </div>
     </div>

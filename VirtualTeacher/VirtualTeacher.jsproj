@@ -116,6 +116,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\sounds\colores\amarillo.mp3" />
+    <Content Include="Content\sounds\colores\anaranjado.mp3" />
+    <Content Include="Content\sounds\colores\azul.mp3" />
+    <Content Include="Content\sounds\colores\blanco.mp3" />
+    <Content Include="Content\sounds\colores\marron.mp3" />
+    <Content Include="Content\sounds\colores\negro.mp3" />
+    <Content Include="Content\sounds\colores\rojo.mp3" />
+    <Content Include="Content\sounds\colores\verde.mp3" />
+    <Content Include="Content\sounds\colores\violeta.mp3" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -183,6 +192,7 @@
     <Content Include="scripts\app\controllers\mainMenuController.js" />
     <Content Include="scripts\app\models\colores.js" />
     <Content Include="scripts\app\services\imageServices.js" />
+    <Content Include="scripts\app\services\randomServices.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\errors.json" />

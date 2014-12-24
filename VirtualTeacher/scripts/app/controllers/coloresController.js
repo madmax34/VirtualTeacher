@@ -1,22 +1,50 @@
 ﻿var coloresController = angular.module('coloresController', []);
 
-coloresController.controller('ColoresController', ['$scope', '$log', 'Images', function ($scope, $log, Images) {
-    $scope.puntos = 0;
-    $scope.timer = '00:00.000s';
+coloresController.controller('ColoresController', ['$scope', '$log', 'Random', function ($scope, $log, Random) {
+    $scope.shuffle = Random.shuffleArray;
+    $scope.getRandomInPeriod = Random.numberInPeriod;
+
     $scope.gameCanvas = $("#gameCanvas");
     $scope.elementoBuscadoSvg = $("#elementoBuscado");
+    $scope.columnCount = 3;
+    $scope.rowCount = 3;
+    $scope.isPlaying = false;
 
-    $scope.columnWidth = ($scope.gameCanvas.width() / 3);
-    $scope.columnHeight = ($scope.gameCanvas.height() / 3);
-    $scope.minSize = $scope.columnWidth > $scope.columnHeight ? $scope.columnHeight : $scope.columnWidth;
-    $scope.widthRect = $scope.minSize - 10;
-    $scope.heightRect = $scope.widthRect;
-    $scope.playX = Math.floor($scope.gameCanvas.width() / 2) - 100;
-    $scope.playY = Math.floor($scope.gameCanvas.height() / 2) - 100;
+    $scope.safeApply = function (fn) {
+        var phase = this.$root.$$phase;
+        if (phase == '$apply' || phase == '$digest') {
+            if (fn && (typeof (fn) === 'function')) {
+                fn();
+            }
+        } else {
+            this.$apply(fn);
+        }
+    };
+
+    $scope.resetAll = function() {
+        $scope.puntos = 0;
+        $scope.timer = '00:00';
+    };
+
+    $scope.resetBoard = function() {
+        $scope.columnWidth = ($scope.gameCanvas.width() / $scope.columnCount);
+        $scope.columnHeight = ($scope.gameCanvas.height() / $scope.rowCount);
+        $scope.minSize = $scope.columnWidth > $scope.columnHeight ? $scope.columnHeight : $scope.columnWidth;
+        $scope.widthRect = $scope.minSize - 7;
+        $scope.heightRect = $scope.widthRect;
+        $scope.playX = Math.floor($scope.gameCanvas.width() / 2) - 100;
+        $scope.playY = Math.floor($scope.gameCanvas.height() / 2) - 100;
+        $scope.boardWidth = ($scope.widthRect * $scope.columnCount) + 14;
+        $scope.boardHeight = ($scope.heightRect * $scope.rowCount) + 14;
+        $scope.boardX = Math.floor($scope.gameCanvas.width() / 2) - Math.floor($scope.boardWidth / 2);
+        $scope.boardY = Math.floor($scope.gameCanvas.height() / 2) - Math.floor($scope.boardHeight / 2);
+        
+        $scope.safeApply();
+    };
 
     var svgns = "http://www.w3.org/2000/svg";
 
-    $scope.drawRect = function(x, y, height, width, id) {
+    $scope.drawRect = function(x, y, height, width, id, isBuscado) {
         var rect = document.createElementNS(svgns, 'rect');
         rect.setAttributeNS(null, 'x', x);
         rect.setAttributeNS(null, 'y', y);
@@ -24,32 +52,9 @@ coloresController.controller('ColoresController', ['$scope', '$log', 'Images', f
         rect.setAttributeNS(null, 'width', width);
         rect.setAttributeNS(null, 'fill', colores_lv1[id].colour);
         rect.setAttributeNS(null, 'data-nombre', colores_lv1[id].name);
+        rect.setAttributeNS(null, 'data-buscado', isBuscado);
         rect.setAttributeNS(null, 'ng-click', 'elementClick()');
         return rect;
-    };
-
-    $scope.shuffle = function (array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-            array[randomIndex].id = randomIndex;
-        }
-
-        return array;
-    };
-
-    $scope.getRandomInPeriod = function (min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
     $scope.drawBoard = function () {
@@ -57,20 +62,24 @@ coloresController.controller('ColoresController', ['$scope', '$log', 'Images', f
         $scope.elementoBuscadoSvg.empty();
 
         $scope.shuffledArray = $scope.shuffle(colores_lv1);
-        
-        $scope.elementoBuscadoRect = $scope.drawRect(2, 2, 50, 50, $scope.getRandomInPeriod(0, 7));
+        $scope.indexToSearch = $scope.getRandomInPeriod(0, 7);
+        $scope.elementoBuscadoRect = $scope.drawRect(2, 2, 50, 50, $scope.indexToSearch, true);
+        $scope.audioToPlay = new Audio($scope.shuffledArray[$scope.indexToSearch].sound);
+        $scope.audioToPlay.load();
+        $scope.audioToPlay.playbackRate = 1.5;
+        $scope.audioToPlay.play();
         
         $scope.elementoBuscadoSvg.append($scope.elementoBuscadoRect);
         $scope.ArrayIndex = 0;
 
-        for (var i = 0; i < 3; i++) {
-            $scope.posY = 5 + $scope.minSize * i;
+        for (var i = 0; i < $scope.rowCount; i++) {
+            $scope.posY = $scope.boardY + $scope.minSize * i;
 
-            for (var j = 0; j < 3; j++) {
-                setTimeout(true, 500);
-                $scope.posX = 5 + $scope.minSize * j;
+            for (var j = 0; j < $scope.columnCount; j++) {
+                
+                $scope.posX = $scope.boardX + $scope.minSize * j;
                 if ($scope.ArrayIndex < $scope.shuffledArray.length) {
-                    var rect = $scope.drawRect($scope.posX, $scope.posY, $scope.widthRect, $scope.heightRect, $scope.ArrayIndex);
+                    var rect = $scope.drawRect($scope.posX, $scope.posY, $scope.widthRect, $scope.heightRect, $scope.ArrayIndex, false);
                     $scope.gameCanvas.append(rect);
                 } else {
                     break;
@@ -80,6 +89,9 @@ coloresController.controller('ColoresController', ['$scope', '$log', 'Images', f
         }
 
         $("rect").on("click", function () {
+            if ($(this).attr('data-buscado') == 'true') {
+                return;
+            }
 
             if ($scope.elementoBuscadoRect) {
                 var nombreBuscado = $scope.elementoBuscadoRect.getAttribute('data-nombre');
@@ -97,7 +109,24 @@ coloresController.controller('ColoresController', ['$scope', '$log', 'Images', f
         });
     };
 
-    $scope.playClick = function() {
+    $scope.resetAll();
+    $scope.resetBoard();
+
+    $scope.playClick = function () {
+        $scope.isPlaying = true;
+        $scope.resetAll();
+        $scope.resetBoard();
         $scope.drawBoard();
     };
+
+    $scope.orientationChanged = function (mediaQueryList) {
+        $scope.resetBoard();
+
+        if ($scope.isPlaying) {
+            $scope.drawBoard();
+        }
+    };
+
+    $scope.orientationCheck = window.matchMedia("(orientation: portrait)");
+    $scope.orientationCheck.addListener($scope.orientationChanged);
 }]);

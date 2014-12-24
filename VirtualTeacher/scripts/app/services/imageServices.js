@@ -3,7 +3,7 @@
 imageServices.factory('Images', function () {
 
     return {
-        getImgSrc: function(src) {
+        getImgSrc: function (src) {
             return window.MSApp ? src : '/' + src;
         }
     };

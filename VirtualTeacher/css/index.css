@@ -1,5 +1,5 @@
 ﻿html > body {
-    padding: 15px;
+    padding: 5px;
     background-image: url('images/blurry_blue_background_ii-wallpaper-2560x1440.jpg');
     width: 100vw;
     height: 100vh;
@@ -21,13 +21,21 @@ body {
     background-color: transparent !important;
 }
 
-.page-header {
-    margin-top: 0 !important;
-    height: 55px;
+.container-fluid > div.row.header-row{
+    height: 46px !important;
 }
 
+.page-header {
+    margin-top: 0 !important;
+    height: 40px;
+}
+
+    .page-header > a {
+        line-height: 15px !important;
+    }
+
     .page-header img {
-        width: 40px;
+        width: 31px;
         margin-left: 15px;
         margin-right: 15px;
     }
@@ -42,7 +50,7 @@ a {
 
 div .game-content {
     width: 100%;
-    height: 60vh;
+    height: 63.4vh;
     border-style: solid;
     border-color: #ffffff;
     border-width: 1px;
@@ -62,7 +70,7 @@ div .game-info {
     margin-top: 5px;
     margin-left: 0 !important;
     width: 100%;
-    height: 15vh;
+    height: 77px;
     border-style: solid;
     border-color: #ffffff;
     border-width: 1px;
@@ -74,7 +82,15 @@ div .game-info {
     color: green;
 }
 
-div.game-info > div > div > h6 {
+div.game-info > div > svg {
+    margin-top: 7px;
+}
+
+div.game-info > div > h6 {
         margin-top: 2px !important;
         margin-bottom: 2px !important;
     }
+
+div.game-info > div > label {
+    margin-bottom: 0 !important;
+}
